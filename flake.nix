@@ -28,7 +28,7 @@
       homebrew = {
         enable = true;
         brews = [
-          "wezterm"
+          # "wezterm"
           # "mas"
         ];
         casks = [
@@ -37,7 +37,7 @@
         ];
         # AppStore
         masApps = {
-          "Yoink" = 457622435;
+          # "Yoink" = 457622435;
         };
         onActivation.cleanup = "zap";
       };
@@ -106,7 +106,7 @@
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."MacBook" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         nix-homebrew.darwinModules.nix-homebrew
@@ -117,12 +117,13 @@
             enableRosetta = true;
             # User owning the Homebrew prefix
             user = "josh";
+            autoMigrate = true;
           };
         }
       ];
     };
 
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."mini".pkgs;
+    darwinPackages = self.darwinConfigurations."MacBook".pkgs;
   };
 }
